@@ -2,3 +2,16 @@
 body{
 	background: #bc8ce8;
 }
+
+.bg-primary{
+	background: #4e9c9c;
+}
+
+.banner{
+	width:110%;
+	height:100vh;
+	background:linear-gradient(rgba(0,0,0,.8),rgba(0,0,0,.8)),url(../image/Contact.png);
+	color:white;
+	background-size:cover;
+	
+}
