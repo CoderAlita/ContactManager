@@ -7,9 +7,56 @@
 <body style= background:blue;>
 	<h1>Welcome to SignUp page!! </h1>
 	<section>
-	<h1>SignUp to ContactManager</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim ullam delectus modi aliquid nulla nemo laboriosam optio itaque corporis cum nam labore commodi alias voluptatem natus reprehenderit recusandae numquam nostrum.</p>
-	
+	<div class="container">
+		<div class="row">
+		
+			<div class="col-md-6 offset-md-3">
+			<div class="my-card mt-1">
+			<div class="container text-center"><img src="" th:src="@{image/register.png}" width=50 height=50 alt="" /></div>
+			
+				<h1 class="text-center">SignUp Here</h1>
+				<form action="@{/do_register/}" mathod="post">
+				
+				<!-- UserName -->
+				<div class="mb-3">
+					    <label for="username" class="form-label">Username</label>
+					    
+					    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+				</div>
+				
+				<!-- Email Addresss-->
+				<div class="mb-3">
+					    <label for="Email1" class="form-label">Email address</label>
+					    
+					    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+				</div>
+				
+				<!-- Password -->
+				<div class="mb-3">
+					    <label for="password" class="form-label">Password</label>
+					    
+					    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>	    
+				</div>
+				
+				<!-- About -->
+				<div class="form-group">
+				<textarea class="form-control" name="about" placeholder="Enter something about yourself!"  rows="6"></textarea>
+				</div>
+				
+				<div class="container text-center">
+				
+					<button type="submit" class="btn bg-primary">Submit</button>
+					<button type="reset" class="btn btn-warning">Reset</button>
+				</div>
+				
+				
+				</form>
+				
+			</div>
+			
+			</div>
+		</div>
+	</div>
 	</section>
 </body>
 </html>
