@@ -15,3 +15,11 @@ body{
 	background-size:cover;
 	
 }
+
+.my-card{
+	padding:20px;
+	background:#FFFFFF;
+}
+.container{
+	padding:10px;
+}
