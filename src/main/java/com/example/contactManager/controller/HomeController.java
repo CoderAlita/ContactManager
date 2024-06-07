@@ -3,6 +3,11 @@ package com.example.contactManager.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.contactManager.entity.UserEntity;
 
 
 @Controller
@@ -29,6 +34,15 @@ public class HomeController {
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("Title", "Login - Contact manager");
+		model.addAttribute("user", new UserEntity());
+		return "login";
+	}
+	
+	@PostMapping("/login")
+	public String register(@ModelAttribute("user")UserEntity user,@RequestParam(value="agree", defaultValue="false") boolean agree, Model model) {
+		System.out.println("User  "+user);
+		System.out.println("Agree" + agree);
+		
 		return "login";
 	}
 
