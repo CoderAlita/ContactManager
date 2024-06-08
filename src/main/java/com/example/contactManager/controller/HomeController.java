@@ -2,12 +2,13 @@ package com.example.contactManager.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.contactManager.entity.UserEntity;
+import com.example.contactManager.entity.User;
 
 
 @Controller
@@ -25,25 +26,35 @@ public class HomeController {
 		return "About";
 	}
 	
-	@GetMapping("/signup")
-	public String signup(Model model) {
-		model.addAttribute("Title", "SignUp - Contact manager");
-		return "signup";
-	}
 	
 	@GetMapping("/login")
 	public String login(Model model) {
 		model.addAttribute("Title", "Login - Contact manager");
-		model.addAttribute("user", new UserEntity());
+		
 		return "login";
 	}
 	
-	@PostMapping("/login")
-	public String register(@ModelAttribute("user")UserEntity user,@RequestParam(value="agree", defaultValue="false") boolean agree, Model model) {
-		System.out.println("User  "+user);
-		System.out.println("Agree" + agree);
+	@GetMapping("/signup")
+	public String signup(Model model) {
+		model.addAttribute("Title", "SignUp - Contact manager");
+		User user =new User();
+		model.addAttribute("user", user);
+		return "signup";
+	}
+	
+	
+	@PostMapping("/do_register")
+	public String register(@ModelAttribute("user") User user, @RequestParam(value="agree", defaultValue="false") boolean agree, Model model ,BindingResult result) {
 		
-		return "login";
+		if(result.hasErrors()) {
+					
+					System.out.println(result);
+				}
+		
+		System.out.println("User  "+user);
+		System.out.println("Agree  " + agree);
+		
+		return "registered";
 	}
 
 }

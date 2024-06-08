@@ -14,8 +14,8 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="USER")
-public class UserEntity {
+//@Table(name="USER")
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,12 +29,12 @@ public class UserEntity {
 	private boolean isActive;
 	@Column(length = 300)
 	private String about;
-	private boolean agree;
+//	private boolean agree;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy = "user")
 	private List<ContactEntity> contact = new ArrayList<>();
 	
-	public UserEntity() {
+	public User() {
 		super();
 	}
 
@@ -114,11 +114,11 @@ public class UserEntity {
 
 	@Override
 	public String toString() {
-		return "UserEntity [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", role="
-				+ role + ", profile=" + profile + ", isActive=" + isActive + ", about=" + about + ", agree=" + agree
-				+ ", contact=" + contact + "]";
+		return "User [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", role=" + role
+				+ ", profile=" + profile + ", isActive=" + isActive + ", about=" + about + ", contact=" + contact + "]";
 	}
 
+	
 	
 	
 }

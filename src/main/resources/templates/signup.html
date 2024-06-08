@@ -10,61 +10,93 @@
 	<div class="container">
 		<div class="row">
 		
-			<div class="col-md-8 offset-md-2">
-			<div class="my-card mt-1">
-			<div class="container text-center"><img src="" th:src="@{image/register.png}" width=50 height=50 alt="" /></div>
-			
-				<h1 class="text-center">SignUp Here</h1>
-				<form action="@{/do_register/}" mathod="post" th:object="${user}">
+			<div class="col-md-6 offset-md-3">
+				<div class="my-card mt-1">
+					<div class="container text-center">
+						<img style="width:60px;" src="" th:src="@{image/register.png}" width=50  alt="" />
+					</div>
 				
-				<!-- UserName -->
-				<div class="mb-3">
-					    <label for="username" class="form-label">Username</label>
-					    
-					    <input type="text" 
-					    name="name"
-					    class="form-control" 
-					    id="exampleInputEmail1" 
-					    aria-describedby="emailHelp" 
-					    
-					    required>
-				</div>
-				
-				<!-- Email Addresss-->
-				<div class="mb-3">
-					    <label for="Email1" class="form-label">Email address</label>
-					    
-					    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
-				</div>
-				
-				<!-- Password -->
-				<div class="mb-3">
-					    <label for="password" class="form-label">Password</label>
-					    
-					    <input type="text" name="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>	    
-				</div>
-				
-				<!-- About -->
-				<div class="form-group">
-				<textarea class="form-control" name="about" placeholder="Enter something about yourself!"  rows="4"></textarea>
-				</div>
-				
-				
-				<!-- Terms and conditions -->
-				<div class="form-group form-check text-center">
-				<input type="checkbox" name="agree" id="agree" class="form-check-input"/>
-				
-				<label for="agree"> Accept terms and conditions</label>
-				</div>
-											
-				<div class="container text-center">
-				
-					<button type="submit" class="btn bg-primary">Submit</button>
-					<button type="reset" class="btn btn-warning">Reset</button>
-				</div>
-				
-				
-				</form>
+					<h1 class="text-center">SignUp Here</h1>
+					<form action=" " th:action="@{/do_register}" method="post" th:object="${user}">
+					
+					<!-- UserName -->
+					
+					<div class="form-group">
+						    <label for="nameField" class="form-label">UserName</label>
+						    
+						    <input 
+							    type="text" 
+							    name="name"
+							    class="form-control" 
+							    id="nameField" 
+							    th:value="${user.name}"
+							    placeholder="Enter here"
+							    required>
+							 
+					</div>
+					
+					<!-- Email Addresss-->
+					<div class="form-group">
+						    <label for="emailField" class="form-label">Email address</label>
+						    
+						    <input 
+						    	type="email" 
+						    	th:value="${user.email}"
+						    	name="email" 
+						    	class="form-control" 
+						    	id="emailField" 
+						    	placeholder="Enter here"
+						    	required>
+					</div>
+					
+					<!-- Password -->
+					<div class="form-group">
+						    <label for="passswordField" class="form-label">Password</label>
+						    
+						    <input
+						    	name="password" 
+							    type="text"
+							    class="form-control" 
+							    id="passswordField" 
+							    placeholder="Enter here"
+							    required>	    
+					</div>
+					
+					<!-- About -->
+					<div class="form-group">
+					
+						<label for="aboutField" class="form-label">About yourself</label>
+						<textarea 
+							name ="about"
+							class="form-control" 
+							placeholder="Enter something about yourself!" 
+							rows="5"
+							th:value=${user.about} >
+						</textarea>
+						
+					</div>
+					
+					
+					<!-- Terms and conditions -->
+					<div class="form-group form-check text-center">
+					
+					
+						<input type="checkbox" name="agree" id="agree" class="form-check-input"/>
+						<label for="agree"> Accept terms and conditions</label>
+						
+						
+						
+					</div>
+												
+					<div class="container text-center">
+					
+						<button type="submit" class="btn bg-primary">Submit</button>
+						<button type="reset" class="btn btn-warning">Reset</button>
+						
+					</div>
+					
+					
+					</form>
 				
 			</div>
 			

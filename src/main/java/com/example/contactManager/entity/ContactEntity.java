@@ -25,7 +25,7 @@ public class ContactEntity {
 	@Column(length = 300)
 	private String discription;
 	@ManyToOne
-	private UserEntity user;
+	private User user;
 	public int getCid() {
 		return cid;
 	}
@@ -76,10 +76,10 @@ public class ContactEntity {
 	}
 	
 	
-	public UserEntity getUser() {
+	public User getUser() {
 		return user;
 	}
-	public void setUser(UserEntity user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 	@Override

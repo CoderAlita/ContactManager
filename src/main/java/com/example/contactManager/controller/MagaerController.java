@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.contactManager.entity.ContactEntity;
-import com.example.contactManager.entity.UserEntity;
+import com.example.contactManager.entity.User;
 import com.example.contactManager.repository.UserRepository;
 
 @Controller
@@ -19,7 +19,7 @@ public class MagaerController {
 	@ResponseBody
 	public String home() {
 		
-		UserEntity user = new UserEntity();
+		User user = new User();
 		user.setName("Priya");
 		user.setEmail("priya@gmail.com");
 		userRepository.save(user);
