@@ -1,5 +1,6 @@
 package com.example.contactManager.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,10 +10,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.contactManager.entity.User;
+import com.example.contactManager.helper.Message;
+import com.example.contactManager.repository.UserRepository;
+
+import jakarta.servlet.http.HttpSession;
 
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
+	Message message;
 	
 	@GetMapping("/home")
 	public String home(Model model) {
@@ -44,17 +55,46 @@ public class HomeController {
 	
 	
 	@PostMapping("/do_register")
-	public String register(@ModelAttribute("user") User user, @RequestParam(value="agree", defaultValue="false") boolean agree, Model model ,BindingResult result) {
+	public String register(@ModelAttribute("user") User user, @RequestParam(value="agree", defaultValue="false") boolean agree, Model model,HttpSession session ) {
 		
-		if(result.hasErrors()) {
-					
-					System.out.println(result);
-				}
+	
+		try {
+			
+			if(!agree) {
+				
+				System.out.println("You have not agree the terms and conditions!!");
+				throw new Exception("You have not agree the terms and conditions!!");
+			}
+	
+			user.setRole("Role_User");
+			user.setActive(true);
+			user.setProfile("default.png");
+			
+			System.out.println("User  "+user);
+			System.out.println("Agree  " + agree);
+			
+			User result = userRepository.save(user);
+			model.addAttribute("user", new User());
+			
+			message.setContent("Registered successfullly !");
+			message.setType("alert-success");
+			
+			session.setAttribute("message", message);
+			
+			return "signup";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("user",user);
+			
+			message.setContent("Something went wrong !" + e.getMessage());
+			message.setType("alert-danger");
+			session.setAttribute("message", message);
+			
+			return "signup";
+		}
 		
-		System.out.println("User  "+user);
-		System.out.println("Agree  " + agree);
 		
-		return "registered";
 	}
 
 }
