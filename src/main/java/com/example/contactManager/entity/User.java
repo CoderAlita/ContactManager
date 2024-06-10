@@ -12,6 +12,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Entity
 //@Table(name="USER")
@@ -20,16 +24,22 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	@NotBlank(message = "UserName cannot be empty!!")
+	@Size(min=3,max = 15,message = "Username must be 3-10 characters !!!")
 	private String name;
+	@Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$",message="Please enter a valid" )
 	private String password;
+	
 	@Column(unique = true)
+	@NotBlank(message="Email cannot be empty!!")
+	@Pattern(regexp="^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@gmail.com+$", message="please enter a valid email id !!!")
 	private String email;
 	private String role;
 	private String profile;
 	private boolean isActive;
 	@Column(length = 300)
+	@Size(min=5,max = 50,message = "Username must be 3-50 characters !!!")
 	private String about;
-//	private boolean agree;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy = "user")
 	private List<ContactEntity> contact = new ArrayList<>();
@@ -102,8 +112,6 @@ public class User {
 		this.about = about;
 	}
 	
-	
-
 	public List<ContactEntity> getContact() {
 		return contact;
 	}
@@ -111,14 +119,11 @@ public class User {
 	public void setContact(List<ContactEntity> contact) {
 		this.contact = contact;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", role=" + role
-				+ ", profile=" + profile + ", isActive=" + isActive + ", about=" + about + ", contact=" + contact + "]";
+				+ ", profile=" + profile + ", isActive=" + isActive + ", about=" + about 				+ ", contact=" + contact + "]";
 	}
-
-	
-	
 	
 }

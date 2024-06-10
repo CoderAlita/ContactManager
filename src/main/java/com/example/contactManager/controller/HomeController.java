@@ -14,6 +14,7 @@ import com.example.contactManager.helper.Message;
 import com.example.contactManager.repository.UserRepository;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -55,10 +56,16 @@ public class HomeController {
 	
 	
 	@PostMapping("/do_register")
-	public String register(@ModelAttribute("user") User user, @RequestParam(value="agree", defaultValue="false") boolean agree, Model model,HttpSession session ) {
+	public String register ( @Valid @ModelAttribute("user") User user,BindingResult bindingResult , @RequestParam(value="agree", defaultValue="false") boolean agree, Model model,HttpSession session) {
 		
 	
 		try {
+			
+			if(bindingResult.hasErrors()) {
+				System.out.println(bindingResult);
+				return "signup";
+			}
+			
 			
 			if(!agree) {
 				
