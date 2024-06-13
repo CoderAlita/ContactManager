@@ -1,6 +1,7 @@
 package com.example.contactManager.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,9 @@ import jakarta.validation.Valid;
 public class HomeController {
 	
 	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
 	UserRepository userRepository;
 	
 	@Autowired
@@ -39,7 +43,7 @@ public class HomeController {
 	}
 	
 	
-	@GetMapping("/login")
+	@GetMapping("/loginuser")
 	public String login(Model model) {
 		model.addAttribute("Title", "Login - Contact manager");
 		
@@ -76,6 +80,7 @@ public class HomeController {
 			user.setRole("Role_User");
 			user.setActive(true);
 			user.setProfile("default.png");
+			user.setPassword(passwordEncoder.encode(user.getPassword()));
 			
 			System.out.println("User  "+user);
 			System.out.println("Agree  " + agree);
