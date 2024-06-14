@@ -24,11 +24,11 @@ public class MyConfig {
 	@Bean
 	public UserDetailsService  getUserDetailService(BCryptPasswordEncoder passwordEncoder) {
 		
-		UserDetails admin =User.withUsername("priyanka").password(passwordEncoder.encode("priyanka")).roles("ADMIN").build();
-		
-		UserDetails user =User.withUsername("adesh").password(passwordEncoder.encode("adesh")).roles("USER").build();
-		
-		return new InMemoryUserDetailsManager(admin,user);
+//		UserDetails admin =User.withUsername("priyanka").password(passwordEncoder.encode("priyanka")).roles("ADMIN").build();
+//		
+//		UserDetails user =User.withUsername("adesh").password(passwordEncoder.encode("adesh")).roles("USER").build();
+//		
+		return new UserDetailServiceImpl();
 	}
 	
 	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
