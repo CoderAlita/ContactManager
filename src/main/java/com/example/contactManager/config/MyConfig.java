@@ -24,10 +24,10 @@ public class MyConfig {
 	@Bean
 	public UserDetailsService  getUserDetailService(BCryptPasswordEncoder passwordEncoder) {
 		
-//		UserDetails admin =User.withUsername("priyanka").password(passwordEncoder.encode("priyanka")).roles("ADMIN").build();
-//		
-//		UserDetails user =User.withUsername("adesh").password(passwordEncoder.encode("adesh")).roles("USER").build();
-//		
+		UserDetails admin =User.withUsername("priyanka").password(passwordEncoder.encode("priyanka")).roles("ADMIN").build();
+		
+		UserDetails user =User.withUsername("adesh").password(passwordEncoder.encode("adesh")).roles("USER").build();
+		
 		return new UserDetailServiceImpl();
 	}
 	
@@ -42,6 +42,7 @@ public class MyConfig {
 		.and()
 		.authorizeHttpRequests()
 		.requestMatchers("/user/**").authenticated()
+		.anyRequest().authenticated()
 		.and().formLogin().and().build();
 		
 	}
