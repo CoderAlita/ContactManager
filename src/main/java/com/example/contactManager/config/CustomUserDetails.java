@@ -8,61 +8,63 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import com.example.contactManager.entity.User;
 
-public class CustomUserDetails implements UserDetails {
-	private User user;
-	private List<GrantedAuthority> authorities;
-
-	public CustomUserDetails(User user) {
-		super();
-		this.user = user;
-		authorities= Arrays.stream(user.getRole().split(","))
-				.map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
-		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(user.getRole());
-		return authorities;
-	}
-
-	@Override
-	public String getPassword() {
-		
-		return user.getPassword();
-	}
-
-	@Override
-	public String getUsername() {
-		
-		return user.getEmail();
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
-	}
+//@Component
+public class CustomUserDetails {
+//implements UserDetails {
+//	private String name;
+//	private String password;
+//	private List<GrantedAuthority> authorities;
+//	
+//	
+//	public CustomUserDetails(User user) {
+//		
+//		name = user.getName();
+//		password =user.getPassword();
+//		
+//		authorities= Arrays.stream(user.getRole().split(","))
+//				.map(SimpleGrantedAuthority::new)
+//				.collect(Collectors.toList());
+//	}
+//
+//	@Override
+//	public Collection<? extends GrantedAuthority> getAuthorities() {
+//		return authorities;
+//	}
+//
+//	@Override
+//	public String getPassword() {
+//		
+//		return password;
+//	}
+//
+//	@Override
+//	public String getUsername() {
+//		
+//		return name;
+//	}
+//
+//	@Override
+//	public boolean isAccountNonExpired() {
+//		return true;
+//	}
+//
+//	@Override
+//	public boolean isAccountNonLocked() {
+//		return true;
+//	}
+//
+//	@Override
+//	public boolean isCredentialsNonExpired() {
+//		return true;
+//	}
+//
+//	@Override
+//	public boolean isEnabled() {
+//		return true;
+//	}
 
 }
